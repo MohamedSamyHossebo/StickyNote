@@ -3,6 +3,7 @@ import { login, register } from "@/api/services/auth/auth.service";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { AuthResponse, LoginPayload, LoginResponse, RegisterPayload } from "@/api/models/auth.Model";
+import { toast } from "react-toastify";
 
 export const useRegister = () => {
     const router = useRouter();
@@ -11,13 +12,13 @@ export const useRegister = () => {
         mutationFn: (userData: RegisterPayload) => register(userData),
 
         onSuccess: (data: AuthResponse) => {
-            console.log("تم التسجيل بنجاح:", data.message);
+            toast.success("تم التسجيل بنجاح ✅");
             Cookies.set("token", data.token, { expires: 7 });
             router.push("/home");
         },
 
         onError: (error: any) => {
-            console.error("فشل التسجيل:", error.response?.data?.message || error.message);
+            toast.error(error.response?.data?.message || "فشل التسجيل ❌");
         },
     });
 };
@@ -29,13 +30,13 @@ export const useLogin = () => {
         mutationFn: (userData: LoginPayload) => login(userData),
 
         onSuccess: (data: LoginResponse) => {
-            console.log("تم تسجيل الدخول بنجاح:", data.message);
+            toast.success("تم تسجيل الدخول بنجاح ✅");
             Cookies.set("token", data.token, { expires: 7 });
             router.push("/home");
         },
 
         onError: (error: any) => {
-            console.error("فشل تسجيل الدخول:", error.response?.data?.message || error.message);
+            toast.error(error.response?.data?.message || "فشل تسجيل الدخول ❌");
         },
     });
 };
