@@ -12,7 +12,7 @@ export const createNote = async (note: CreateNotePayload) => {
 }
 
 export const updateNote = async (note: Note) => {
-    const res = await axiosInstance.put(`/api/notes/${note._id}`, note);
+    const res = await axiosInstance.patch(`/api/notes/${note._id}`, note);
     return res.data;
 }
 

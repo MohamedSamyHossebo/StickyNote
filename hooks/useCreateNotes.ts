@@ -1,6 +1,7 @@
 import { CreateNotePayload } from "@/api/models/notes.Model";
 import { createNote } from "@/api/services/notes/notes.service";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 export const useCreateNote = () => {
     const queryClient = useQueryClient();
@@ -8,17 +9,13 @@ export const useCreateNote = () => {
     return useMutation({
         mutationFn: (newNote: CreateNotePayload) => createNote(newNote),
 
-        // ✅ هنا السحر كله!
         onSuccess: () => {
-            // 1. أول ما الإضافة تنجح، بنقوله يمسح كاش 'notes' ويجيبه تاني
             queryClient.invalidateQueries({ queryKey: ["notes"] });
-
-            // ممكن تطبع رسالة نجاح هنا
-            console.log("Note added successfully!");
+            toast.success("تمت إضافة الملاحظة بنجاح ✅");
         },
 
         onError: (error) => {
-            console.error("Failed to add note:", error);
+            toast.error(`فشل إضافة الملاحظة: ${error.message}`);
         },
     });
-}
+};

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
 import TanstackProvider from "@/providers/TanstackProvider";
 import Navbar from "@/components/Navbar";
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -34,6 +36,7 @@ export default function RootLayout({
         <TanstackProvider>
           <Navbar />
           {children}
+          <ToastContainer position="top-right" autoClose={3000} rtl />
         </TanstackProvider>
       </body>
     </html>

@@ -1,16 +1,51 @@
 "use client";
 
+import { useState } from "react";
 import useNotes from "@/hooks/useNotes";
 import { Note } from "@/api/models/notes.Model";
+import { useDeleteNote } from "@/hooks/useDeleteNote";
 import AddNoteDialog from "@/components/notes/AddNoteDialog";
+import EditNoteDialog from "@/components/notes/EditNoteDialog";
+import { Button } from "@/components/ui/button";
 import {
   useReactTable,
   getCoreRowModel,
   createColumnHelper,
   flexRender,
 } from "@tanstack/react-table";
+import { PencilIcon, Trash2Icon } from "lucide-react";
 
 const columnHelper = createColumnHelper<Note>();
+
+function ActionsCell({ note }: { note: Note }) {
+  const { mutate: deleteMutate, isPending: isDeleting } = useDeleteNote();
+  const [editOpen, setEditOpen] = useState(false);
+
+  return (
+    <div className="flex items-center gap-1">
+      <Button
+        variant="ghost"
+        size="icon-sm"
+        onClick={() => setEditOpen(true)}
+        title="تعديل"
+      >
+        <PencilIcon className="size-3.5" />
+      </Button>
+
+      <Button
+        variant="destructive"
+        size="icon-sm"
+        disabled={isDeleting}
+        onClick={() => deleteMutate(note._id)}
+        title="حذف"
+      >
+        <Trash2Icon className="size-3.5" />
+      </Button>
+
+      <EditNoteDialog note={note} open={editOpen} onOpenChange={setEditOpen} />
+    </div>
+  );
+}
 
 const columns = [
   columnHelper.accessor("title", {
@@ -41,6 +76,11 @@ const columns = [
         day: "numeric",
       });
     },
+  }),
+  columnHelper.display({
+    id: "actions",
+    header: "الإجراءات",
+    cell: (info) => <ActionsCell note={info.row.original} />,
   }),
 ];
 
