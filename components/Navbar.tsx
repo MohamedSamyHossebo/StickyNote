@@ -33,7 +33,7 @@ function Navbar() {
 
   const handleLogout = () => {
     Cookies.remove("token");
-    router.push("/register");
+    router.push("/login");
   };
 
   return (

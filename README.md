@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Notes App
 
-## Getting Started
+A full-stack notes management application built with **Next.js 16**, **TanStack Query**, and **shadcn/ui**. Features user authentication, CRUD operations on notes, and a responsive Arabic (RTL) interface.
 
-First, run the development server:
+## ✨ Features
+
+- **Authentication** — Register, Login, Logout with JWT tokens
+- **Notes CRUD** — Create, Read, Update, Delete notes
+- **Notes Table** — TanStack Table with view/edit/delete actions
+- **Notes Cards** — Responsive card grid with skeleton loading
+- **Note Detail** — Dynamic route for viewing single notes (`/notes/[id]`)
+- **Toast Notifications** — Success/error feedback via react-toastify
+- **RTL Support** — Full Arabic interface
+- **Loading & 404 Pages** — Polished loading state and custom 404
+
+## 🛠️ Tech Stack
+
+| Layer         | Technology                |
+| ------------- | ------------------------- |
+| Framework     | Next.js 16 (App Router)   |
+| Language      | TypeScript                |
+| UI Components | shadcn/ui (Radix Lyra)    |
+| Styling       | Tailwind CSS v4           |
+| Data Fetching | TanStack Query            |
+| Table         | TanStack Table            |
+| Forms         | Formik + Yup              |
+| HTTP Client   | Axios (with interceptors) |
+| Auth          | JWT + js-cookie           |
+| Icons         | Lucide React              |
+| Notifications | React Toastify            |
+
+## 📁 Project Structure
+
+```
+├── app/
+│   ├── home/           # Home page with notes table
+│   ├── login/          # Login page
+│   ├── register/       # Register page
+│   ├── notes/          # Notes list page
+│   │   └── [id]/       # Note detail page (dynamic segment)
+│   ├── loading.tsx     # Global loading state
+│   ├── not-found.tsx   # Custom 404 page
+│   └── layout.tsx      # Root layout
+├── api/
+│   ├── models/         # TypeScript interfaces
+│   └── services/       # API service functions (auth, notes, user)
+├── components/
+│   ├── auth/           # Login & Register forms
+│   ├── notes/          # NotesTable, NoteCard, AddNoteDialog, EditNoteDialog, CreateNoteForm
+│   └── ui/             # shadcn/ui components
+├── hooks/
+│   ├── auth/           # useAuth, useLogout
+│   └── notes/          # useNotes, useGetNote, useCreateNote, useUpdateNote, useDeleteNote
+├── lib/                # Axios instance, utils
+├── providers/          # TanStack Query provider
+└── middleware.ts       # Auth middleware
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm
+
+### Installation
+
+```bash
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file in the root:
+
+```env
+NEXT_PUBLIC_BASE_URL=https://your-api-domain.com
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm start
+```
