@@ -10,3 +10,19 @@ export interface AuthResponse {
     status: string;
     token: string;
 }
+export interface LoginPayload {
+    email: string;
+    password: string;
+}
+export interface LoginResponse {
+    message: string;
+    status: string;
+    token: string;
+    user: User;
+}
+export interface User {
+    email: string;
+    id: string;
+    name: string;
+}
+
