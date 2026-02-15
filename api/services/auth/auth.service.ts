@@ -10,3 +10,4 @@ export const login = async (userData: LoginPayload): Promise<LoginResponse> => {
     const res = await axios.post("/api/auth/login", userData);
     return res.data;
 }
+
