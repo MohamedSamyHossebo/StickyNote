@@ -20,3 +20,7 @@ export const deleteNote = async (_id: string) => {
     const res = await axiosInstance.delete(`/api/notes/${_id}`);
     return res.data;
 }
+export const getNoteById = async (_id: string) => {
+    const res = await axiosInstance.get(`/api/notes/${_id}`);
+    return res.data.note;
+}

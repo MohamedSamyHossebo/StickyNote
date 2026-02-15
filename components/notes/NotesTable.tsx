@@ -13,7 +13,8 @@ import {
   createColumnHelper,
   flexRender,
 } from "@tanstack/react-table";
-import { PencilIcon, Trash2Icon } from "lucide-react";
+import { EyeIcon, PencilIcon, Trash2Icon } from "lucide-react";
+import Link from "next/link";
 
 const columnHelper = createColumnHelper<Note>();
 
@@ -23,6 +24,12 @@ function ActionsCell({ note }: { note: Note }) {
 
   return (
     <div className="flex items-center gap-1">
+      <Button variant="ghost" size="icon-sm" asChild title="عرض">
+        <Link href={`/notes/${note._id}`}>
+          <EyeIcon className="size-3.5" />
+        </Link>
+      </Button>
+
       <Button
         variant="ghost"
         size="icon-sm"
