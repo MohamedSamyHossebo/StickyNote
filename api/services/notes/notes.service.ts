@@ -2,8 +2,8 @@ import { CreateNotePayload, Note } from "@/api/models/notes.Model";
 import axiosInstance from "@/lib/axios";
 
 export const getUserNotes = async () => {
-    const res = await axiosInstance.get("/api/notes");
-    return res.data;
+    const res = await axiosInstance.get("/api/notes/note-with-user");
+    return res.data.notes;
 }
 
 export const createNote = async (note: CreateNotePayload) => {

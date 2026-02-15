@@ -3,7 +3,6 @@ import Cookies from "js-cookie";
 
 // 1. إعداد الـ Base URL مرة واحدة
 const axiosInstance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_BASE_URL || "https://your-api-domain.com/api/v1",
     headers: {
         "Content-Type": "application/json",
     },
@@ -15,7 +14,7 @@ axiosInstance.interceptors.request.use(
     (config) => {
         const token = Cookies.get("token"); // قراءة التوكن من الكوكيز
         if (token) {
-            config.headers.Authorization = `Bearer ${token}`; // الصيغة القياسية
+            config.headers.Authorization = token; // الصيغة القياسية
         }
         return config;
     },
