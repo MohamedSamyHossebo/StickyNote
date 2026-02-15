@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetNote } from "@/hooks/useGetNote";
+import { useGetNote } from "@/hooks/notes/useGetNote";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "lucide-react";

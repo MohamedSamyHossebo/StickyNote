@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useRegister } from "@/hooks/useAuth";
+import { useRegister } from "@/hooks/auth/useAuth";
 import Link from "next/link";
 import {
   Card,

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Note } from "@/api/models/notes.Model";
-import { useUpdateNote } from "@/hooks/useUpdateNote";
+import { useUpdateNote } from "@/hooks/notes/useUpdateNote";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";

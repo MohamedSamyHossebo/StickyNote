@@ -1,6 +1,6 @@
 "use client";
 
-import { useCreateNote } from "@/hooks/useCreateNotes";
+import { useCreateNote } from "@/hooks/notes/useCreateNotes";
 import { useState } from "react";
 
 export default function CreateNoteForm() {

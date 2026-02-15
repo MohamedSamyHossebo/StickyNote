@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import useNotes from "@/hooks/useNotes";
+import useNotes from "@/hooks/notes/useNotes";
 import { Note } from "@/api/models/notes.Model";
-import { useDeleteNote } from "@/hooks/useDeleteNote";
+import { useDeleteNote } from "@/hooks/notes/useDeleteNote";
 import AddNoteDialog from "@/components/notes/AddNoteDialog";
 import EditNoteDialog from "@/components/notes/EditNoteDialog";
 import { Button } from "@/components/ui/button";
