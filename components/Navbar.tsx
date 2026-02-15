@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { getUserData } from "@/api/services/user/user.service";
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -22,6 +23,7 @@ function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const token = Cookies.get("token");
+  const user = getUserData() as { name?: string } | null;
 
   // Don't show navbar on auth pages
   const authRoutes = ["/login", "/register"];
@@ -65,9 +67,14 @@ function Navbar() {
         {/* Auth Actions */}
         <div className="flex items-center gap-2">
           {token ? (
-            <Button variant="outline" size="sm" onClick={handleLogout}>
-              تسجيل الخروج
-            </Button>
+            <>
+              <span className="text-sm font-medium text-muted-foreground">
+                أهلاً، {user?.name || "مستخدم"}
+              </span>
+              <Button variant="outline" size="sm" onClick={handleLogout}>
+                تسجيل الخروج
+              </Button>
+            </>
           ) : (
             <>
               <Button variant="ghost" size="sm" asChild>
